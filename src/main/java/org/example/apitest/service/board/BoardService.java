@@ -24,4 +24,20 @@ public class BoardService {
     public void deleteBoard(int id) {
         boardMapper.deleteBoard(id);
     }
+
+    public Board getBoardById(int id) {
+        return boardMapper.getBoardById(id);
+    }
+
+    public void updateBoard(Board board) {
+        boardMapper.updateBoard(board);
+    }
+
+    public void likeBoard(Board board) {
+        boardMapper.likeBoard(board);
+    }
+
+    public int getTotalBoardCount() {
+        return boardMapper.getTotalBoardCount();
+    }
 }

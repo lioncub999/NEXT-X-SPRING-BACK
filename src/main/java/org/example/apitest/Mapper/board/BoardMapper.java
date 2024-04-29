@@ -13,4 +13,12 @@ public interface BoardMapper {
     void insertBoard(String title);
 
     void deleteBoard(int id);
+
+    Board getBoardById(int id);
+
+    void updateBoard(Board board);
+
+    void likeBoard(Board board);
+
+    int getTotalBoardCount();
 }

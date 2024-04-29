@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.apitest.model.board.Board;
+import org.example.apitest.model.board.BoardPageInfo;
 import org.example.apitest.service.board.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,16 +25,22 @@ public class BoardController {
 
     @ResponseBody
     @GetMapping("/getBoardList")
-    public List<Board> getBoardList(
+    public BoardPageInfo getBoardList(
     ) {
-        return boardService.getBoardList();
+        List<Board> boardInfo = boardService.getBoardList();
+        int totalBoardCount = boardService.getTotalBoardCount();
+
+        return BoardPageInfo.builder()
+                .boardList(boardInfo)
+                .totalBoardCount(totalBoardCount)
+                .build();
     }
 
     @PostMapping("/getBoardById")
-    public void getBoardById(
+    public Board getBoardById(
             @RequestBody Board board
     ) {
-        System.out.println(board.getId());
+        return boardService.getBoardById(board.getId());
     }
 
     @PostMapping("/insert")
@@ -49,6 +56,30 @@ public class BoardController {
             @RequestBody Board board
     ) {
         boardService.deleteBoard(board.getId());
+        return true;
+    }
+
+    @PostMapping("/update")
+    public boolean updateBoard(
+            @RequestBody Board board
+    ) {
+        boardService.updateBoard(Board.builder()
+                .id(board.getId())
+                .title(board.getTitle())
+                .build()
+        );
+
+        return true;
+    }
+
+    @PostMapping("/like")
+    public boolean likeBoard(
+            @RequestBody Board board
+    ) {
+        boardService.likeBoard(Board.builder()
+                .id(board.getId())
+                .build());
+
         return true;
     }
 }

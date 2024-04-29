@@ -5,14 +5,23 @@
 <mapper namespace="org.example.apitest.Mapper.board.BoardMapper">
     <select id="getBoardList"
             resultType="org.example.apitest.model.board.Board">
-        SELECT ID, TITLE, CRE_ID, CRE_DTM
+        SELECT ID, TITLE, THUMB, CRE_ID, CRE_DTM
         FROM TB_BOARD
+        ORDER BY CRE_DTM DESC
+    </select>
+
+    <select id="getBoardById"
+            parameterType="int"
+            resultType="org.example.apitest.model.board.Board">
+        SELECT ID, TITLE, THUMB, CRE_ID, CRE_DTM
+        FROM TB_BOARD
+        WHERE ID = #{id}
     </select>
 
     <insert id="insertBoard"
             parameterType="String">
-        INSERT INTO TB_BOARD (TITLE, CRE_ID, CRE_DTM)
-        VALUES (#{title}, '테스트계정임', NOW())
+        INSERT INTO TB_BOARD (TITLE, THUMB, CRE_ID, CRE_DTM)
+        VALUES (#{title}, 0, '테스트계정임', NOW())
     </insert>
 
     <delete id="deleteBoard"
@@ -20,4 +29,24 @@
         DELETE FROM TB_BOARD
         WHERE ID = #{id}
     </delete>
+
+    <update id="updateBoard"
+            parameterType="org.example.apitest.model.board.Board">
+        UPDATE TB_BOARD
+        SET TITLE = #{title}
+        WHERE ID = #{id}
+    </update>
+
+    <update id="likeBoard"
+            parameterType="org.example.apitest.model.board.Board">
+        UPDATE TB_BOARD
+        SET THUMB = THUMB + 1
+        WHERE ID = #{id}
+    </update>
+
+    <select id="getTotalBoardCount"
+            resultType="int">
+        SELECT count(*)
+        FROM TB_BOARD
+    </select>
 </mapper>
