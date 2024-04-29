@@ -26,9 +26,14 @@ public class BoardController {
     @GetMapping("/getBoardList")
     public List<Board> getBoardList(
     ) {
-        List<Board> boardList = boardService.getBoardList();
-        System.out.println(boardList);
-        return boardList;
+        return boardService.getBoardList();
+    }
+
+    @PostMapping("/getBoardById")
+    public void getBoardById(
+            @RequestBody Board board
+    ) {
+        System.out.println(board.getId());
     }
 
     @PostMapping("/insert")
@@ -36,6 +41,14 @@ public class BoardController {
             @RequestBody Board board
     ) {
         boardService.insertBoard(board.getTitle());
+        return true;
+    }
+
+    @PostMapping("/delete")
+    public boolean deleteBoard(
+            @RequestBody Board board
+    ) {
+        boardService.deleteBoard(board.getId());
         return true;
     }
 }

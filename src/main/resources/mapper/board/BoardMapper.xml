@@ -14,4 +14,10 @@
         INSERT INTO TB_BOARD (TITLE, CRE_ID, CRE_DTM)
         VALUES (#{title}, '테스트계정임', NOW())
     </insert>
+
+    <delete id="deleteBoard"
+            parameterType="int">
+        DELETE FROM TB_BOARD
+        WHERE ID = #{id}
+    </delete>
 </mapper>

@@ -20,4 +20,8 @@ public class BoardService {
     public void insertBoard(String title) {
         boardMapper.insertBoard(title);
     }
+
+    public void deleteBoard(int id) {
+        boardMapper.deleteBoard(id);
+    }
 }

@@ -11,4 +11,6 @@ public interface BoardMapper {
     List<Board> getBoardList();
 
     void insertBoard(String title);
+
+    void deleteBoard(int id);
 }
