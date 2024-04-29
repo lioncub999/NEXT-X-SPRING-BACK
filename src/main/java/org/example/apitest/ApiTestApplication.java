@@ -18,7 +18,7 @@ public class ApiTestApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+                registry.addMapping("/**").allowedOrigins("http://localhost:3000", "http://ec2-13-125-64-157.ap-northeast-2.compute.amazonaws.com:3000");
             }
         };
     }
