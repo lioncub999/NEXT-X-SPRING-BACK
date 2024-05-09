@@ -18,8 +18,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailsService customUserDetailsService;
-    private final JwtAuthenticateFilter jwtAuthenticateFilter
-    ;
+    private final JwtAuthenticateFilter jwtAuthenticateFilter;
+    private final CorsConfig corsConfig;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -40,7 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Stateless (세션사용X)
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         // UsernamePasswordAuthenticationFilter 에 도달하기 전에 커스텀한 필터를 먼저 동작시킴
-        http.addFilterBefore(jwtAuthenticateFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilter(corsConfig.corsFilter())
+                .addFilterBefore(jwtAuthenticateFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
