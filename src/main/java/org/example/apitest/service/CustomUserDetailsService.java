@@ -18,6 +18,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User("kim", encoder.encode("1234"), AuthorityUtils.createAuthorityList());
+        return new User("kim", encoder.encode("3333"), AuthorityUtils.createAuthorityList());
     }
 }
