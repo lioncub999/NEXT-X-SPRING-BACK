@@ -11,4 +11,10 @@
         FROM TB_USER
         WHERE USER_NM = #{registerNm}
     </select>
+
+    <insert id="register"
+            parameterType="org.example.apitest.model.auth.Register">
+        INSERT INTO TB_USER (USER_NM, USER_PW, PW_RESET_YN, USER_GD, USER_BALANCE, CRE_NM, CRE_DTM)
+        VALUES (#{registerNm}, #{registerPw}, 'N', 1, 100000, null, NOW())
+    </insert>
 </mapper>

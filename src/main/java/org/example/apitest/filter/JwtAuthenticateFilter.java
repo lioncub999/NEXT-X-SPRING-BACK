@@ -2,7 +2,7 @@ package org.example.apitest.filter;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.apitest.service.CustomUserDetailsService;
+import org.example.apitest.service.auth.CustomUserDetailsService;
 import org.example.apitest.utils.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

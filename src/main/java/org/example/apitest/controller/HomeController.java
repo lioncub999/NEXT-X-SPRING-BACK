@@ -2,7 +2,7 @@ package org.example.apitest.controller;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import org.example.apitest.service.CustomUserDetailsService;
+import org.example.apitest.service.auth.CustomUserDetailsService;
 import org.example.apitest.utils.JwtUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

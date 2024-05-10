@@ -2,7 +2,7 @@ package org.example.apitest.config;
 
 import lombok.RequiredArgsConstructor;
 import org.example.apitest.filter.JwtAuthenticateFilter;
-import org.example.apitest.service.CustomUserDetailsService;
+import org.example.apitest.service.auth.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

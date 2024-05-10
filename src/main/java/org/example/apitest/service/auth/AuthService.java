@@ -13,9 +13,14 @@ public class AuthService {
     @Autowired
     AuthMapper authMapper;
 
-
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public int dupCheck(Register register) {
         return authMapper.dupCheck(register);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public boolean register(Register register) {
+        authMapper.register(register);
+        return true;
     }
 }

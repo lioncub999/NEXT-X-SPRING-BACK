@@ -7,4 +7,6 @@ import org.example.apitest.model.auth.Register;
 public interface AuthMapper {
 
     int dupCheck(Register register);
+
+    void register(Register register);
 }

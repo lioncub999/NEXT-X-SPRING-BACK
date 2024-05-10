@@ -1,4 +1,4 @@
-package org.example.apitest.service;
+package org.example.apitest.service.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.AuthorityUtils;
