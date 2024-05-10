@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -123,11 +125,12 @@ public class AuthController {
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException("로그인 실패");
         }
-
-        // 인증 성공 후 인증된 user의 정보를 갖고옴
+//
+//        // 인증 성공 후 인증된 user의 정보를 갖고옴
         UserDetails userDetails = userDetailsService.loadUserByUsername(login.getLoginNm());
-        // subject, claim 모두 UserDetails를 사용하므로 객체를 그대로 전달
+//        // subject, claim 모두 UserDetails를 사용하므로 객체를 그대로 전달
         String token = jwtUtil.generateToken(userDetails);
+        authInfo.setToken(token);
 
         traceWriter.add("< OUTPUT >");
         traceWriter.add("[token : " + "aa" + "]");

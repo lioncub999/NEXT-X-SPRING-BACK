@@ -28,7 +28,7 @@ public class JwtAuthenticateFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorization = request.getHeader("Authorization"); // 헤더 파싱
-        String username = "", token = "";
+        String loginNm = "", token = "";
 
         if (authorization != null && authorization.startsWith("Bearer ")) { // Bearer 토큰 파싱
             log.info(token);
@@ -36,14 +36,14 @@ public class JwtAuthenticateFilter extends OncePerRequestFilter {
             token = authorization.substring(7); // jwt token 파싱
             log.info(token);
 
-            username = jwtUtil.getUsernameFromToken(token); // username 얻어오기
+            loginNm = jwtUtil.getUsernameFromToken(token); // username 얻어오기
         } else {
             filterChain.doFilter(request, response);
             return;
             }
         // 현재 SecurityContextHolder 에 인증객체가 있는지 확인
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        if (loginNm != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = userDetailsService.loadUserByUsername(loginNm);
             // 토큰 유효여부 확인
             log.info("JWT Filter token = {}", token);
             log.info("JWT Filter userDetails = {}", userDetails.getUsername());

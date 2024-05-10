@@ -22,6 +22,7 @@ public class JwtUtil {
     public String generateToken(UserDetails userDetails) {
         Claims claims = Jwts.claims();
         claims.put("username", userDetails.getUsername());
+
         return createToken(claims, userDetails.getUsername()); // username을 subject로 해서 token 생성
     }
 
@@ -29,7 +30,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 1시간
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1시간
                 .signWith(SignatureAlgorithm.HS256, SECRET)
                 .compact();
     }
@@ -70,6 +71,7 @@ public class JwtUtil {
         Claims claims = getAllClaims(token);
         return claims.getExpiration();
     }
+
 
     /**
      * 토큰이 만료되었는지

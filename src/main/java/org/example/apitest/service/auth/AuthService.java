@@ -2,7 +2,9 @@ package org.example.apitest.service.auth;
 
 import org.example.apitest.Mapper.auth.AuthMapper;
 import org.example.apitest.model.auth.Register;
+import org.example.apitest.model.user.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
