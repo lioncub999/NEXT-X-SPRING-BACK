@@ -123,7 +123,9 @@ public class AuthController {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(login.getLoginNm(), login.getLoginPw()));
         } catch (BadCredentialsException e) {
-            throw new BadCredentialsException("로그인 실패");
+//            throw new BadCredentialsException("로그인 실패");
+            System.out.println(e + " 계정 정보 불일치");
+            return authInfo;
         }
 //
 //        // 인증 성공 후 인증된 user의 정보를 갖고옴
